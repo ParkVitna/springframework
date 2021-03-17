@@ -29,8 +29,15 @@
               <div class="flex-grow-1 overflow-auto pr-3" style="height:0px">
               	<div>
               		<%-- 메뉴 내용 부분 --%>
-	                <div>좌측 메뉴를 클릭하면 해당 내용이 나오는 부분</div>
-	                <div>요청 --> DispatcherServlet --> Exam01Controller --> home.jsp</div>
+	                method01form.jsp
+	                <hr/>
+	                <form method="post" action="method1">
+	                	<div class="form-group">
+	                		<label for="name">이름</label>
+	                		<input id="name" type="text" name="name" class="form-control"/>
+	                	</div>
+	                	<input class="btn btn-success btn-sm" type="submit" value="전송">
+	                </form>
               	</div>
               </div>
             </div>
