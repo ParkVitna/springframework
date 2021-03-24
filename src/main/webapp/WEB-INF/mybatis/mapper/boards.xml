@@ -9,11 +9,11 @@
    </select>
 
    <select id="selectByPage" parameterType="pager" resultType="board">
-      select rnum, bno,btitle,bcontent,bwriter,bdate
+      select rnum, bno,btitle,bcontent,bwriter,bdate,bhitcount
       from(
-         select rownum as rnum,bno,btitle,bcontent,bwriter,bdate
+         select rownum as rnum,bno,btitle,bcontent,bwriter,bdate,bhitcount
             from (
-               select bno,btitle,bcontent,bwriter,bdate
+               select bno,btitle,bcontent,bwriter,bdate,bhitcount
                from boards
                order by bno desc
             )
