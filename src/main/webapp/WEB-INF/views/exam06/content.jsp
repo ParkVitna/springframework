@@ -22,5 +22,6 @@
    	<a class="btn btn-info btn-sm" href="sessionReadObject">세션에서 객체 찾기 및 읽기(상태 읽기)</a>
    	<a class="btn btn-info btn-sm" href="sessionRemoveObject">세션에서 객체 삭제(상태 삭제)</a>
    </div>
+   
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

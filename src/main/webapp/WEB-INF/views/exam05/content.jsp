@@ -10,13 +10,21 @@
    });
    
    const getList = (pageNo) => {
-	   $.ajax({
+	   const args = {url:"list", method:"get"};
+	   if(pageNo) {
+		   args.data = {pageNo};
+	   }
+	   $.ajax(args).then(data => {
+         $("#board").html(data);
+       });
+	   
+	   /* $.ajax({
          url: "list",
          data: {pageNo},
          method: "get"
        }).then(data => {
          $("#board").html(data);
-       }); 
+       }); */ 
    };
    
    const read = (bno) => {

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
@@ -68,9 +69,23 @@ public class Exam04Controller {
 	}*/
    
    @GetMapping("/list")
-   public String getBoardList(@RequestParam(defaultValue="1") int pageNo, Model model) {
+   public String getBoardList(String pageNo, Model model, HttpSession session) {
+	   
+	  int intPageNo = 1;
+	  if(pageNo == null) {
+		   	 //세션에서 Pager를 찾고, 있으면 pageNo를 설정
+			 Pager pager = (Pager) session.getAttribute("pager");
+			 if(pager != null) {
+				 intPageNo = pager.getPageNo();
+			 }
+	  } else {
+		  intPageNo = Integer.parseInt(pageNo);
+	  }
+	   
       int totalRows = boardsService.getTotalRows();
-      Pager pager = new Pager(10,5, totalRows, pageNo);
+      Pager pager = new Pager(10,5, totalRows, intPageNo);
+      session.setAttribute("pager", pager);
+      
       List<Board> list = boardsService.getBoardList(pager);
       model.addAttribute("list", list);
       model.addAttribute("pager", pager);
@@ -78,8 +93,14 @@ public class Exam04Controller {
    }
    
    @GetMapping("/createForm")
-   public String insertForm() {
-      return "exam04/createForm";
+   public String insertForm(HttpSession session) {
+	   String uid = (String)session.getAttribute("loginUid");
+	   if(uid == null) {
+		   return "redirect:/exam07/loginForm";
+	   } else {
+		   return "exam04/createForm";
+	   }
+      
    }
    
 	/* @PostMapping("/create")
@@ -95,11 +116,17 @@ public class Exam04Controller {
 	 }*/
    
    @PostMapping("/create")
-	 public String saveBoard(Board board) {
-	   board.setBwriter("user1");
-	   boardsService.saveBoard(board);
-	  return "redirect:/exam04/list";
-	 }
+   public String create(Board board, HttpSession session) {
+      String uid = (String) session.getAttribute("loginUid");
+      if(uid ==null) {
+         return "redirect:/exam07/loginForm";
+      }else {
+         board.setBwriter(uid);
+         boardsService.saveBoard(board);
+         return "redirect:/exam04/list";
+      }
+
+   }
    
    @GetMapping("/read")
    public String read(int bno, Model model) {
@@ -129,8 +156,13 @@ public class Exam04Controller {
    }
    
    @GetMapping("/createFormWithAttach")
-   public String createFormWithAttach() {
-      return "exam04/createFormWithAttach";
+   public String createFormWithAttach(HttpSession session) {
+	   String uid = (String)session.getAttribute("loginUid");
+	   if(uid == null) {
+		   return "redirect:/exam07/loginForm";
+	   } else {
+		   return "exam04/createFormWithAttach";
+	   }
    }
    
 	/*@PostMapping("/createWithAttach")

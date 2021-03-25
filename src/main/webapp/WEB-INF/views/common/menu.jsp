@@ -42,4 +42,14 @@
     	쿠키(Cookie) & 세션(Session)
     </a>
    </li>
+   
+   <li class="nav-item mb-2">
+    <h6 class="text-white">회원 서비스</h6>
+    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/exam07/joinForm">
+    	회원 가입
+    </a>
+    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/exam07/loginForm">
+    	로그인
+    </a>
+   </li>
 </ul>
