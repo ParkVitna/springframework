@@ -31,7 +31,7 @@
 			 
 			 <tr>
 			 	<td colspan="5" class="text-center">
-			 		<div class="d-flex justify-content-around">
+			 		<div class="d-flex">
 					 	<div class="flex-grow-1">
 						 	<!-- [처음][이전] 6 7 8 9 10 [다음][맨끝] -->
 						 		<button class="btn btn-outline-primary btn-sm" 
