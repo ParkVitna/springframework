@@ -10,7 +10,7 @@
    </insert>
    
    <resultMap id="userResultMap" type="user">
-      <result property="uid" column="userid"/>
+      <id property="uid" column="userid"/>
       <result property="uname" column="username"/>
       <result property="upassword" column="userpassword"/>
       <result property="uauthority" column="userauthority"/>
